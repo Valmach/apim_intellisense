@@ -1,0 +1,247 @@
+{
+"check-header": {
+        "prefix": "check-header",
+        "body": [
+            "<check-header name=\"${1}\" failed-check-httpcode=\"${2}\" failed-check-error-message=\"${3}\" ignore-case=\"${4}\" >\n\t<value>${5}</value>\n</check-header>"   
+         ],
+        "description": "check-header"
+} ,
+"rare limit": {
+        "prefix": "rare limit",
+        "body": [
+           "<rate-limit calls=\"${1}\" renewal-period=\"${2}\" >\n\t<api name=\"${3}\" calls=\"${4}\" renewal-period=\"${5}\" >\n\t\t<operation name=\"${6}\" calls=\"${7}\" renewal-period=\"${8}\" />\n\t</api>\n</rate-limit>"
+         ],
+        "description": "rare limit"
+} ,
+"rare limit by key": {
+        "prefix": "rare limit by key",
+        "body": [
+           "<rate-limit-by-key calls=\"${1}\" renewal-period=\"${2}\" counter-key=\"${3}\" />"
+         ],
+        "description": "rare limit by key"
+} ,
+"ip filter": {
+        "prefix": "ip filter",
+        "body": [
+            "<ip-filter action=\"${1}\" >\n\t<address>${2}</address>\n\t<address-range from=\"${3}\" to=\"${4}\" />\n</ip-filter>"
+         ],
+        "description": "ip filter"
+} ,
+"quota": {
+        "prefix": "quota",
+        "body": [
+          "<quota calls=\"${1}\" bandwidth=\"${2}\" renewal-period=\"${3}\" >\n\t<api name=\"${4}\" calls=\"${5}\" bandwidth=\"${6}\" >\n\t\t<operation name=\"${7}\" calls=\"${8}\" bandwidth=\"${9}\" />\n\t</api>\n</quota>"
+         ],
+        "description": "quota"
+} ,
+"quota by key": {
+        "prefix": "quota by key",
+        "body": [
+          "<quota-by-key calls=\"${1}\" bandwidth=\"${2}\" renewal-period=\"${3}\" counter-key=\"${4}\" />"
+         ],
+        "description": "quota by key"
+} ,
+"validate jwt": {
+        "prefix": "validate jwt",
+        "body": [
+         "<validate-jwt \n\theader-name=\"${1}\" \n\tfailed-validation-httpcode=\"${2}\" \n\tfailed-validation-error-message=\"${3}\" \n\trequire-expiration-time=\"${4}\" \n\trequire-signed-tokens=\"${5}\" \n\tclock-skew=\"${6}\" > \n <issuer-signing-keys> \n\t<key>${7}</key> \n </issuer-signing-keys> \n <audiences> \n\t<audience>${8}</audience> \n </audiences> \n <issuers> \n\t<issuer>${9}</issuer> \n </issuers> \n <required-claims> \n\t<claim name=\"${10}\" match=\"${11}\" > \n\t\t<value>${12}</value> \n\t</claim> \n </required-claims> \n <openid-config url=\"${13}\" > \n <zumo-master-key id=\"${14}\" >${15}</zumo-master-key> \n</validate-jwt>"
+         ],
+        "description": "validate jwt"
+} ,
+"choose": {
+        "prefix": "choose",
+        "body": [
+         "<choose>\n\t<when condition=\"${1}\" >\n\t</when>\n\t<when condition=\"${2}\" >\n\t</when>\n\t<otherwise>\n\t</otherwise>\n</choose>"
+         ],
+        "description": "choose"
+} ,
+"forward request": {
+        "prefix": "forward request",
+        "body": [
+          "<forward-request timeout=\"${1}\" follow-redirects=\"${2}\" />"
+         ],
+        "description": "forward request"
+} ,
+"log to eventhub": {
+        "prefix": "log to eventhub",
+        "body": [
+          "<log-to-eventhub logger-id=\"${1}\" partition-id=\"${2}\" partition-key=\"${3}\" >${4}\n</log-to-eventhub>" 
+         ],
+        "description": "log to eventhub"
+} ,
+"return response": {
+        "prefix": "return response",
+        "body": [
+          "<return-response>\n\t<set-header/>\n\t<set-body/>\n\t<set-status/>\n</return-response>" 
+         ],
+        "description": "return response"
+} ,
+"send request": {
+        "prefix": "send request",
+        "body": [
+          "<send-request mode=\"${1}\" response-variable-name=\"${2}\" timeout=\"${3}\" ignore-error=\"${4}\" >\n\t<set-url>...</set-url>\n\t<set-method>...</set-method>\n\t<set-header name= xss-action=\"${5}\" >...</set-header>\n\t<set-body>...</set-body>\n</send-request>"
+         ],
+        "description": "send request"
+} ,
+"send one way request": {
+        "prefix": "send one way request",
+        "body": [
+          "<send-one-way-request mode=\"${1}\" >\n\t<url>...</url>\n\t<method>...</method>\n\t<header name=\"${2}\" exists-action=\"${3}\" >...</header>\n\t<body>...</body>\n</send-one-way-request>"
+         ],
+        "description": "send one way request"
+} ,
+"set variable": {
+        "prefix": "set variable",
+        "body": [
+         "<set-variable name=\"${1}\" value=\"${2}\" />"
+         ],
+        "description": "set variable"
+} ,
+"set method": {
+        "prefix": "set method",
+        "body": [
+         "<set-method>${1}</set-method>"
+        ],
+        "description": "set method"
+} ,
+"set status": {
+        "prefix": "set status",
+        "body": [
+        "<set-status code=\"${1}\"  reason=\"${2}\" />"
+        ],
+        "description": "set status"
+} ,
+"wait": {
+        "prefix": "wait",
+        "body": [
+      "<wait for=\"${1}\" >\n</wait>"
+        ],
+        "description": "wait"
+} ,
+"authentication basic": {
+        "prefix": "authentication basic",
+        "body": [
+      "<authentication-basic username=\"${1}\" password=\"${2}\" />"
+        ],
+        "description": "authentication basic"
+} ,
+"authentication certificate": {
+        "prefix": "authentication certificate",
+        "body": [
+     "<authentication-certificate thumbprint=\"${1}\" />"
+        ],
+        "description": "authentication certificate"
+} ,
+"cache lookup": {
+        "prefix": "cache lookup",
+        "body": [
+     "<cache-lookup vary-by-developer=\"${1}\" vary-by-developer-groups=\"${2}\" downstream-caching-type=\"${3}\" must-revalidate=\"${4}\" allow-private-response-caching=\"${5}\">\n\t<vary-by-header>${6}</vary-by-header>\n\t<vary-by-header>${7}</vary-by-header>\n\t<vary-by-header>${8}</vary-by-header>\n\t<vary-by-header>${9}</vary-by-header>\n\t<vary-by-query-parameter>${10}</vary-by-query-parameter>\n</cache-lookup>"
+        ],
+        "description": "cache lookup"
+} ,
+"cache store": {
+        "prefix": "cache store",
+        "body": [
+     "<cache-store duration=\"${1}\" />"
+        ],
+        "description": "cache store"
+} ,
+"cache lookup value": {
+        "prefix": "cache lookup value",
+        "body": [
+     "<cache-lookup-value key=\"${1}\" default-value=\"${2}\" variable-name=\"${3}\" />"
+        ],
+        "description": "cache lookup value"
+} ,
+"cache store value": {
+        "prefix": "cache store value",
+        "body": [
+     "<cache-store-value key=\"${1}\" value=\"${2}\" duration=\"${3}\" />"
+        ],
+        "description": "cache store value"
+} ,
+"cross domain": {
+        "prefix": "cross domain",
+        "body": [
+     "<cross-domain></cross-domain>"
+        ],
+        "description": "cross domain"
+} ,
+"cors": {
+        "prefix": "cors",
+        "body": [
+     "<cors allow-credentials=\"${1}\" >\n\t<allowed-origins>\n\t\t<origin>${2}</origin>\n\t</allowed-origins>\n\t<allowed-methods preflight-result-max-age=\"${3}\" >\n\t\t<method>${4}</method>\n\t</allowed-methods>\n\t<allowed-headers>\n\t\t<header>${5}</header>\n\t</allowed-headers>\n\t<expose-headers>\n\t\t<header>${6}</header>\n\t</expose-headers>\n</cors>"
+        ],
+        "description": "cors"
+} ,
+"jsonp": {
+        "prefix": "jsonp",
+        "body": [
+     "<jsonp callback-parameter-name=\"${1}\" />"
+        ],
+        "description": "jsonp"
+} ,
+"json to xml": {
+        "prefix": "json to xml",
+        "body": [
+     "<json-to-xml apply=\"${1}\" consider-accept-header=\"${2}\" />"
+        ],
+        "description": "json to xml"
+} ,
+"xml to json": {
+        "prefix": "xml to json",
+        "body": [
+     "<xml-to-json kind=\"${1}\" apply=\"${2}\" consider-accept-header=\"${3}\" />"
+        ],
+        "description": "xml to json"
+} ,
+"find and replace": {
+        "prefix": "find and replace",
+        "body": [
+     "<find-and-replace from=\"${1}\" to=\"${2}\" />"
+        ],
+        "description": "find and replace"
+} ,
+"redirect-content-urls": {
+        "prefix": "redirect-content-urls",
+        "body": [
+     "<redirect-content-urls />"
+        ],
+        "description": "redirect-content-urls"
+} ,
+"set backend service": {
+        "prefix": "set backend service",
+        "body": [
+     "<set-backend-service base-url=\"${1}\" />"
+        ],
+        "description": "set backend service"
+} ,
+"set body": {
+        "prefix": "set body",
+        "body": [
+     "<set-body>${1}</set-body>"
+        ],
+        "description": "set body"
+} ,
+"set header": {
+        "prefix": "set header",
+        "body": [
+     "<set-header name=\"${1}\" exists-action=\"${2}\" >\n\t<value>${3}</value>\n</set-header>"
+        ],
+        "description": "set header"
+} ,
+"set query parameter": {
+        "prefix": "set query parameter",
+        "body": [
+     "<set-query-parameter name=\"${1}\" exists-action=\"${2}\" >\n\t<value>${3}</value>\n</set-query-parameter>"
+        ],
+        "description": "set query parameter"
+} ,
+"rewrite uri": {
+        "prefix": "rewrite uri",
+        "body": [
+     "<rewrite-uri template=\"${1}\" />"
+        ],
+        "description": "rewrite uri"
+}
+}
